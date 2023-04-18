@@ -28,9 +28,10 @@ def read_employees() -> list[dict]:
 
 def rank_employees(employees):
     ranked = sorted(employees, key=lambda employee: employee['salary'])
-    for e in ranked:
-        print(e["salary"])
+    # Now add a rank to each row, ties get the same rank.
+
+    return ranked
 
 if __name__ == "__main__":
     employees = read_employees()
-    rank_employees(employees)
+    print(rank_employees(employees))
