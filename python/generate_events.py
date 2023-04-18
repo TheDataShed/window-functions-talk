@@ -128,9 +128,8 @@ if __name__ == "__main__":
     events = random_events()
 
     base_dir = os.path.dirname(os.path.dirname(__file__))
-    filename = f"website_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
     events.to_csv(
-        os.path.join(base_dir, "data", filename),
+        os.path.join(base_dir, "data", "website_data.csv"),
         index=False,
         date_format="%Y-%m-%dT%H:%M:%S",
     )

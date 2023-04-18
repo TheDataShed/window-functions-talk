@@ -1,5 +1,12 @@
 tasks:
-  - init: pip3 install -r requirements/test.txt
+  - name: Pip install
+    init: pip3 install -r requirements/test.txt
+  - name: Generate Data
+    init: python python/generate_events.py
+  - name: Setup DB
+    init: psql -f sql/setup_db.sql
+  - name: Insert Data
+    init: psql -c "\copy website_visits from 'data/website_data.csv' DELIMITER ',' CSV HEADER"
 
 image: gitpod/workspace-postgres
 
