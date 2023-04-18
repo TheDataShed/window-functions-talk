@@ -9,7 +9,9 @@ tasks:
     command: psql -f sql/setup_db.sql && gp sync-done db-setup
   - name: Insert Data
     init: gp sync-await db-setup && gp sync-await generate-events
-    command: psql -c "\copy website_visits from 'data/website_data.csv' DELIMITER ',' CSV HEADER"
+    command: |
+      psql -c "\copy website_visits from 'data/website_data.csv' DELIMITER ',' CSV HEADER"
+      psql -c "\copy employees from 'data/employees.csv' DELIMITER ',' CSV HEADER"
 
 image: gitpod/workspace-postgres
 

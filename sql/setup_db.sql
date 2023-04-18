@@ -18,3 +18,18 @@ CREATE TABLE website_sessions (
     session_id varchar(255)
 )
 ;
+
+DROP TABLE IF EXISTS employees
+;
+
+CREATE TABLE employees (
+    first_name varchar(255),
+    last_name varchar(255),
+    email varchar(255),
+    phone varchar(255),
+    department varchar(255),
+    job_title varchar(255),
+    experience_years int,
+    salary int
+)
+;
