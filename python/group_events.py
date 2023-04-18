@@ -9,7 +9,7 @@ import pandas as pd
 
 SESSION_TIMEOUT_SECS = 1800
 
-CSV_FILE = "website_data_20230418_012558.csv"
+CSV_FILE = "website_data.csv"
 
 base_dir = os.path.dirname(os.path.dirname(__file__))
 file_path = os.path.join(base_dir, "data", CSV_FILE)
@@ -103,5 +103,11 @@ if __name__ == "__main__":
     events = read_events()
 
     events_df = pd.DataFrame.from_records(sequential_grouping(events))
+
+    events_df.to_csv(
+        os.path.join(base_dir, "data", "website_sessions.csv"),
+        index=False,
+        date_format="%Y-%m-%dT%H:%M:%S",
+    )
 
     plot_events(events_df)
