@@ -3,11 +3,11 @@ tasks:
     init: pip3 install -r requirements/test.txt && gp sync-done pip
   - name: Generate Data
     init: gp sync-await pip
-    command: python python/generate_events.py
+    command: python python/generate_events.py && gp sync-done generate-events
   - name: Setup DB
     init: psql -f sql/setup_db.sql && gp sync-done db-setup
   - name: Insert Data
-    init: sync-await db-setup
+    init: gp sync-await db-setup && gp sync-await generate-events
     command: psql -c "\copy website_visits from 'data/website_data.csv' DELIMITER ',' CSV HEADER"
 
 image: gitpod/workspace-postgres
