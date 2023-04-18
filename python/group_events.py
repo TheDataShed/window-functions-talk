@@ -2,12 +2,13 @@ import csv
 from datetime import datetime, timedelta
 import hashlib
 import os
+from typing import Generator
 
 from matplotlib import pyplot as plt
 import pandas as pd
 
 
-SESSION_TIMEOUT_SECS = 1800
+SESSION_TIMEOUT_SECS = 1800  # 30 mins
 
 CSV_FILE = "website_data.csv"
 
@@ -15,18 +16,21 @@ base_dir = os.path.dirname(os.path.dirname(__file__))
 file_path = os.path.join(base_dir, "data", CSV_FILE)
 
 
-def read_events() -> list[str]:
+def read_events() -> list[dict]:
     with open(file_path) as f:
         csv_reader = csv.DictReader(f)
         return list(csv_reader)
 
 
-def sequential_grouping(events: list[str]) -> list[dict]:
+def sequential_grouping(events: list[dict]) -> Generator:
     current_user = None
+    # Start with an empty dict of sessions
+    sessions = {}
     for event in events:
         current_website = event["website_id"]
         current_time = datetime.fromisoformat(event["event_datetime"])
 
+        # If this is a new user, reset the dict of sessions
         if current_user != event["user_id"]:
             current_user = event["user_id"]
             sessions = {}

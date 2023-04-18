@@ -99,21 +99,8 @@ def plot_events(events_df: pd.DataFrame):
             label=WEBSITES[website_id],
         )
 
-    min_date = (
-        events_df["event_datetime"].min().replace(microsecond=0, second=0, minute=0)
-    )
-    max_date = events_df["event_datetime"].max().replace(
-        microsecond=0, second=0, minute=0
-    ) + timedelta(hours=1)
-
-    date_to_add = min_date
-    dates = [date_to_add]
-    while date_to_add <= max_date:
-        date_to_add += timedelta(hours=2)
-        dates.append(date_to_add)
-
     plt.yticks(range(NUM_USERS))
-    plt.xticks(dates)
+    plt.gcf().autofmt_xdate()
 
     plt.ylabel("user ID", fontsize=8)
     plt.xlabel("Time", fontsize=8)

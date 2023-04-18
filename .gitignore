@@ -1,3 +1,5 @@
+data/website_sessions.csv
+
 # Created by https://www.toptal.com/developers/gitignore/api/macos,python,visualstudiocode,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,python,visualstudiocode,pycharm
 
@@ -320,12 +322,7 @@ poetry.toml
 pyrightconfig.json
 
 ### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
+.vscode/
 
 # Local History for Visual Studio Code
 .history/
