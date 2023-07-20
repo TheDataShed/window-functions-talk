@@ -1,4 +1,5 @@
 -- Employees ranked by salary
+
 SELECT first_name
      , department
      , salary
@@ -7,7 +8,9 @@ SELECT first_name
        ) AS salary_rank
 FROM   employees
 ;
+
 -- Employees ranked by salary per department
+
 -- SELECT first_name
 --      , department
 --      , salary
