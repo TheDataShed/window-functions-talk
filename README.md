@@ -14,6 +14,34 @@ source venv/bin/activate
 pip install -r requirements/test.txt
 ```
 
+### Local DB
+
+The `.gitpod.yml` outlines what is needed to set up an environment.
+Or you can follow these commands:
+
+Run postgres in Docker:
+
+```shell
+docker run -d \
+  -e POSTGRES_HOST_AUTH_METHOD=trust \
+  --name posty \
+  -p 5432:5432 \
+  postgres
+```
+
+Then set up the two tables:
+
+```shell
+psql -f sql/setup_db.sql
+```
+
+Then insert data into the tables:
+
+```shell
+psql -c "\copy website_visits from 'data/website_data.csv' DELIMITER ',' CSV HEADER"
+psql -c "\copy employees from 'data/employees.csv' DELIMITER ',' CSV HEADER"
+```
+
 ## Running a SQL File
 
 If postgres is running, you can run SQL files using:
